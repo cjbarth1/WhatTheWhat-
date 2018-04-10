@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		B01D6442207D33AC00B18F6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01D6441207D33AC00B18F6E /* AppDelegate.swift */; };
-		B01D6444207D33AC00B18F6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01D6443207D33AC00B18F6E /* ViewController.swift */; };
 		B01D6447207D33AC00B18F6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B01D6445207D33AC00B18F6E /* Main.storyboard */; };
 		B01D6449207D33AC00B18F6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B01D6448207D33AC00B18F6E /* Assets.xcassets */; };
 		B01D644C207D33AC00B18F6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B01D644A207D33AC00B18F6E /* LaunchScreen.storyboard */; };
 		B01D6457207D33AC00B18F6E /* WhatTheWhatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01D6456207D33AC00B18F6E /* WhatTheWhatTests.swift */; };
 		B01D6462207D33AC00B18F6E /* WhatTheWhatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01D6461207D33AC00B18F6E /* WhatTheWhatUITests.swift */; };
+		B01D6470207D33EF00B18F6E /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01D646F207D33EF00B18F6E /* CaptureViewController.swift */; };
+		B01D6474207D41EC00B18F6E /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B01D6473207D41EC00B18F6E /* Resnet50.mlmodel */; };
+		B01D6476207D53CC00B18F6E /* VGG16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B01D6475207D53CC00B18F6E /* VGG16.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,6 @@
 /* Begin PBXFileReference section */
 		B01D643E207D33AC00B18F6E /* WhatTheWhat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatTheWhat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B01D6441207D33AC00B18F6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B01D6443207D33AC00B18F6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B01D6446207D33AC00B18F6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B01D6448207D33AC00B18F6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B01D644B207D33AC00B18F6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,9 @@
 		B01D645D207D33AC00B18F6E /* WhatTheWhatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhatTheWhatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B01D6461207D33AC00B18F6E /* WhatTheWhatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatTheWhatUITests.swift; sourceTree = "<group>"; };
 		B01D6463207D33AC00B18F6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B01D646F207D33EF00B18F6E /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		B01D6473207D41EC00B18F6E /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
+		B01D6475207D53CC00B18F6E /* VGG16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = VGG16.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				B01D6441207D33AC00B18F6E /* AppDelegate.swift */,
-				B01D6443207D33AC00B18F6E /* ViewController.swift */,
 				B01D6445207D33AC00B18F6E /* Main.storyboard */,
 				B01D6448207D33AC00B18F6E /* Assets.xcassets */,
 				B01D644A207D33AC00B18F6E /* LaunchScreen.storyboard */,
 				B01D644D207D33AC00B18F6E /* Info.plist */,
+				B01D6475207D53CC00B18F6E /* VGG16.mlmodel */,
+				B01D6473207D41EC00B18F6E /* Resnet50.mlmodel */,
+				B01D646F207D33EF00B18F6E /* CaptureViewController.swift */,
 			);
 			path = WhatTheWhat;
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B01D6444207D33AC00B18F6E /* ViewController.swift in Sources */,
+				B01D6476207D53CC00B18F6E /* VGG16.mlmodel in Sources */,
 				B01D6442207D33AC00B18F6E /* AppDelegate.swift in Sources */,
+				B01D6474207D41EC00B18F6E /* Resnet50.mlmodel in Sources */,
+				B01D6470207D33EF00B18F6E /* CaptureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +435,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6C7VKJUF27;
 				INFOPLIST_FILE = WhatTheWhat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.teeps.WhatTheWhat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -441,7 +451,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6C7VKJUF27;
 				INFOPLIST_FILE = WhatTheWhat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.teeps.WhatTheWhat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
