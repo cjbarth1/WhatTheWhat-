@@ -77,7 +77,8 @@ extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     guard let resnetRequest = generateRequest(forModel: .resnet),
       let vggRequest = generateRequest(forModel: .vgg16) else { return }
     
-    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([resnetRequest, vggRequest])
+    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([resnetRequest])
+    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([vggRequest])
   }
   
   func generateRequest(forModel type: MLModelType) -> VNCoreMLRequest? {
