@@ -61,7 +61,6 @@ final class CaptureViewController: UIViewController {
   
   private func configureView() {
     captureView.layer.addSublayer(previewLayer)
-    captureView.layer.cornerRadius = 5.0
   }
   
   private func configureOutputMonitor() {
@@ -73,26 +72,26 @@ final class CaptureViewController: UIViewController {
 
 extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
   func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-    
     guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
     
-    guard let resnetModel = try? VNCoreMLModel(for: Resnet50().model),
-      let VGModel = try? VNCoreMLModel(for: VGG16().model) else { return }
+    guard let resnetRequest = generateRequest(forModel: .resnet),
+      let vggRequest = generateRequest(forModel: .vgg16) else { return }
     
-    let resnetRequest = VNCoreMLRequest(model: resnetModel) { (finishedRequest, error) in
-      guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
-      guard let firstObservation = results.first else { return }
-      self.resnetLastCaptured = "RESNET: \(firstObservation.identifier)\nCONFIDENCE: \(firstObservation.confidence)"
+    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([resnetRequest, vggRequest])
+  }
+  
+  func generateRequest(forModel type: MLModelType) -> VNCoreMLRequest? {
+    guard let model = type.model else { return nil }
+    let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
+      guard let results = finishedRequest.results as? [VNClassificationObservation],
+      let firstObservation = results.first else { return }
+      
+      switch type {
+      case .resnet: self.resnetLastCaptured = "RESNET: \(firstObservation.identifier)\nCONFIDENCE: \(firstObservation.confidence)"
+      case .vgg16: self.vggLastCaptured = "VGG: \(firstObservation.identifier)\nCONFIDENCE: \(firstObservation.confidence)"
+      }
     }
     
-    let VGRequest = VNCoreMLRequest(model: VGModel) { (finishedRequest, error) in
-      guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
-      guard let firstObservation = results.first else { return }
-      self.vggLastCaptured = " VGG: \(firstObservation.identifier)\nCONFIDENCE: \(firstObservation.confidence)"
-    }
-    
-    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([resnetRequest])
-    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([VGRequest])
-    
+    return request
   }
 }
